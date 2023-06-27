@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5e47a46-4923-4335-8750-75e000a82a1e" name="Changes" comment="">
+    <list default="true" id="f5e47a46-4923-4335-8750-75e000a82a1e" name="Changes" comment="Task3">
       <change beforePath="$PROJECT_DIR$/../inherit.,encaps.,polymor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../inherit.,encaps.,polymor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inherit.,encaps.,polymor/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../inherit.,encaps.,polymor/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../inherit.,encaps.,polymor/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../inherit.,encaps.,polymor/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +63,18 @@
       <option name="presentableId" value="Default" />
       <updated>1687704201090</updated>
     </task>
+    <task id="LOCAL-00001" summary="Task3">
+      <created>1687723041307</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687723041307</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Task3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Task3" />
   </component>
 </project>

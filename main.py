@@ -19,9 +19,24 @@ class Student:
         else:
             return 'Ошибка'
 
+    def aver_grade(self):
+        sum_grade = 0
+        sum_lec = 0
+        for course in self.grades.values():
+            sum_grade += sum(course)
+            sum_lec += len(course)
+            average_grade = round(sum_grade / sum_lec, 1)
+        return average_grade
+
     def __str__(self):
-        some_student = f'Студенты:\nИмя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: 9.9\nКурсы в процессе изучения: {self.courses_in_progress}\nЗавершенные курсы: {self.courses_in_progress}'
+        some_student = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.aver_grade()}\nКурсы в процессе изучения: {", ".join(self.courses_in_progress)}\nЗавершенные курсы: {", ".join(self.finished_courses)}'
         return some_student
+
+    def __lt__(self, other):
+        if not isinstance(other, Student):
+            print('Это не студент')
+            return
+        return self.aver_grade() < other.aver_grade()
 
 
 class Mentor:
@@ -36,10 +51,24 @@ class Lecturer(Mentor):
         super().__init__(name, surname)
         self.grades = {}
 
+    def aver_grade(self):
+        sum_grade = 0
+        sum_lec = 0
+        for course in self.grades.values():
+            sum_grade += sum(course)
+            sum_lec += len(course)
+            average_grade = round(sum_grade / sum_lec, 1)
+        return average_grade
+
     def __str__(self):
-        some_lecturer = f'Лекторы:\nИмя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: 9.9'
+        some_lecturer = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.aver_grade()}'
         return some_lecturer
 
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Это не преподаватель')
+            return
+        return self.aver_grade < other.aver_grade
 
 
 class Reviewer(Mentor):
@@ -53,31 +82,71 @@ class Reviewer(Mentor):
             return 'Ошибка'
 
     def __str__(self):
-        some_reviewer = f'Проверяющие:\nИмя: {self.name}\nФамилия: {self.surname}'
+        some_reviewer = f'Имя: {self.name}\nФамилия: {self.surname}'
         return some_reviewer
 
 
-best_student = Student('Ruoy', 'Eman', 'your_gender')
-best_student.courses_in_progress += ['Python']
+# Студенты
+student_1 = Student('Екатерина', 'Лу', 'Жен')
+student_1.courses_in_progress += ['Python']
+student_1.finished_courses += ['Старт в програмировании']
+student_1.finished_courses += ['Компьютерная грамотность']
 
-cool_reviewer = Reviewer('Some', 'Buddy')
-cool_reviewer.courses_attached += ['Python']
+student_2 = Student('Максим', 'Иванов', 'Муж')
+student_2.courses_in_progress += ['Python']
+student_2.finished_courses += ["Старт в програмировании"]
+student_2.finished_courses += ["Компьютерная грамотность"]
 
-good_lecturer = Lecturer('Jack', 'Oliver')
-good_lecturer.courses_attached += ['Python']
+# Лекторы
+lecturer_1 = Lecturer('Олег', 'Облачков')
+lecturer_1.courses_attached += ['Python']
+lecturer_1.courses_attached += ['Старт в програмировании']
 
-cool_reviewer.rate_hw(best_student, 'Python', 10)
-cool_reviewer.rate_hw(best_student, 'Python', 10)
-cool_reviewer.rate_hw(best_student, 'Python', 10)
+lecturer_2 = Lecturer('Ирина', 'Земляничкина')
+lecturer_2.courses_attached += ['Python']
+lecturer_2.courses_attached += ['Компьютерная грамотность']
 
-best_student.rate_lec(good_lecturer, 'Python', 10)
-best_student.rate_lec(good_lecturer, 'Python', 10)
-best_student.rate_lec(good_lecturer, 'Python', 10)
+# Проверяющие
+reviewer_1 = Reviewer('Иван', 'Листочкин')
+reviewer_1.courses_attached += ['Python']
+reviewer_1.courses_attached += ['Компьютерная грамотность']
 
-# print(best_student.grades)
-# print(good_lecturer.grades)
-print(best_student)
+reviewer_2 = Reviewer('Ольга', 'Ручкина')
+reviewer_2.courses_attached += ['Python']
+reviewer_2.courses_attached += ['Старт в програмировании']
+
+# Оценки студентам
+reviewer_1.rate_hw(student_1, 'Python', 10)
+reviewer_1.rate_hw(student_2, 'Python', 9)
+
+reviewer_1.rate_hw(student_1, 'Компьютерная грамотность', 9)
+reviewer_1.rate_hw(student_1, 'Компьютерная грамотность', 8)
+
+reviewer_2.rate_hw(student_1, 'Python', 9)
+reviewer_2.rate_hw(student_2, 'Python', 9)
+
+reviewer_2.rate_hw(student_1, 'Старт в програмировании', 10)
+reviewer_2.rate_hw(student_2, 'Старт в програмировании', 8)
+
+# Оценки лекторам
+student_1.rate_lec(lecturer_1, 'Python', 10)
+student_1.rate_lec(lecturer_2, 'Python', 8)
+
+student_1.rate_lec(lecturer_1, 'Старт в програмировании', 9)
+student_1.rate_lec(lecturer_2, 'Компьютерная грамотность', 8)
+
+student_2.rate_lec(lecturer_1, 'Старт в програмировании', 9)
+student_2.rate_lec(lecturer_2, 'Компьютерная грамотность', 8)
+
+
+print('Студенты:')
+print(student_1)
+print(student_2)
 print()
-print(good_lecturer)
+print('Лекторы:')
+print(lecturer_1)
+print(lecturer_2)
 print()
-print(cool_reviewer)
+print('Проверяющие:')
+print(reviewer_1)
+print(reviewer_2)
